@@ -13,7 +13,6 @@ class QuotesSpider(scrapy.Spider):
             yield response.follow(href, self.parse_market)
 
     def parse_market(self, response):
-        time.sleep(2);
         for href in response.css('a.listing-row::attr(href)'):
             yield response.follow(href, self.parse_page)
         nextPage = response.css('ul.pagination a.next::attr(href)').extract_first()
